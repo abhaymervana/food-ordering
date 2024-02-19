@@ -11,10 +11,14 @@ export default function LoginPage() {
   async function handleFormSubmit(ev) {
     ev.preventDefault();
     setLoginInProgress(true);
-
-    await signIn('credentials', {email, password, callbackUrl: '/'});
-
-    setLoginInProgress(false);
+  
+    try {
+      await signIn('credentials', {email, password, callbackUrl: '/'});
+    } catch (error) {
+      console.error('Error during sign in:', error);
+    } finally {
+      setLoginInProgress(false);
+    }
   }
   return (
     <section className="mt-8">
