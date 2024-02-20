@@ -34,11 +34,15 @@ export const authOptions = {
         if (passwordOk) {
           return user;
         }
-
+        
         return null
       }
+      
     })
   ],
+  session: {
+    strategy: 'jwt',
+  },
 };
 
 export async function isAdmin() {
